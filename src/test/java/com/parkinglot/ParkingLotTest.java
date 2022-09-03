@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
+    //AC1
     @Test
     public void should_return_parking_ticket_when_park_given_a_parking_lot_and_a_car() {
         // given
@@ -17,7 +18,7 @@ public class ParkingLotTest {
         // then
         assertNotNull(parkingTicket);
     }
-
+    //AC2
     @Test
     public void should_return_parked_car_when_fetch_given_a_parking_lot_with_a_parked_car_and_a_parking_ticket() {
         // given
@@ -31,7 +32,7 @@ public class ParkingLotTest {
         // then
         assertEquals(car, fetchedCar);
     }
-
+    //AC3
     @Test
     public void should_return_right_car_with_each_ticket_when_fetch_twice_given_a_parking_lot_with_two_parked_car_and_two_parking_ticket() {
         // given
@@ -49,7 +50,7 @@ public class ParkingLotTest {
         assertEquals(carA, firstFetchedCar);
         assertEquals(carB, secondFetchedCar);
     }
-
+    //AC4
     @Test
     public void should_throw_exception_with_error_message_when_fetch_given_a_parking_lot_and_an_unrecognized_parking_ticket() {
         // given
@@ -60,7 +61,7 @@ public class ParkingLotTest {
         Exception exception = assertThrows(UnrecognizedParkingTicketException.class, () -> parkingLot.fetch(unrecognizedParkingTicket));
         assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
-
+    //AC5
     @Test
     public void should_throw_exception_with_error_message_when_fetch_given_a_parking_lot_and_a_used_parking_ticket() {
         // given
@@ -72,7 +73,7 @@ public class ParkingLotTest {
         Exception exception = assertThrows(UnrecognizedParkingTicketException.class, () -> parkingLot.fetch(parkingTicket));
         assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
-
+    //AC6
     @Test
     public void should_throw_exception_with_error_message_when_park_given_a_parking_lot_with_no_available_position_and_a_car() {
         // given
