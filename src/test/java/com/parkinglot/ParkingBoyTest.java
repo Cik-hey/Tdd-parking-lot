@@ -3,6 +3,8 @@ package com.parkinglot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.stream.IntStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingBoyTest {
@@ -87,5 +89,33 @@ public class ParkingBoyTest {
         // when & then
         Exception exception = assertThrows(NoAvailablePositionException.class, () -> parkingBoy.park(car));
         assertEquals("No available position.", exception.getMessage());
+    }
+
+    //Story 4:
+    @Test
+    void should_successfully_add_to_parkingLotList() { //Testing for adding parkingLotList
+        parkingBoy.addParkingLot(new ParkingLot());
+        parkingBoy.park(new Car());
+
+        assertSame(2, parkingBoy.getParkingLotList().size());
+    }
+    //AC1
+    @Test
+    void should_add_cars_in_otherParkingLot_when_firstParkingLot_is_full() {
+        ParkingLot otherParkingLot = new ParkingLot();
+        parkingBoy.addParkingLot(otherParkingLot);
+
+        ParkingTicket parkingTicket = null;
+        for(int i=0; i<10; i++){
+            parkingTicket = parkingBoy.park(new Car());
+        }
+
+        ParkingTicket otherParkingTicket = parkingBoy.park(new Car());
+
+        int parkingLotAvail = parkingBoy.getParkingLotAtIndex(0).getAvailableParkingPosition();
+        int otherParkingLotAvail = parkingBoy.getParkingLotAtIndex(1).getAvailableParkingPosition();
+
+        assertSame(parkingLotAvail, 0);
+        assertSame(otherParkingLotAvail, 9);
     }
 }

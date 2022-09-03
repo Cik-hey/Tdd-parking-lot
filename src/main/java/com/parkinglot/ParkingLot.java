@@ -16,6 +16,9 @@ public class ParkingLot {
         parkedPositions = new HashMap<>();
         this.capacity = capacity;
     }
+    public int getAvailableParkingPosition() {
+        return capacity - parkedPositions.size();
+    }
 
     public ParkingTicket park(Car car) {
         if (isNoAvailablePosition()) {
